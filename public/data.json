@@ -1,0 +1,74 @@
+[
+  {
+    "assignments": [
+      {
+        "id": "3586755f-51e2-4a29-a2b5-d893c3080d34",
+        "title": "Typescript",
+        "description": "Se till att det inte finns några typescript errors",
+        "category": "dev-frontend",
+        "status": "doing",
+        "timestamp": "2026-02-27T13:22:29.158Z",
+        "assignedTo": "2864da2a-6b49-476d-93fd-ee5578db8c86"
+      },
+      {
+        "id": "aabe515d-4444-4515-960b-5c5a17b282b2",
+        "title": "Wireframes",
+        "description": "Gör en wireframe för hur sidan ska se ut och flödet.",
+        "category": "ux",
+        "status": "doing",
+        "timestamp": "2026-02-27T13:23:05.562Z",
+        "assignedTo": "426d7359-bcb0-484d-bc6e-cf3a7c1d4cf0"
+      },
+      {
+        "id": "3d1d0599-2118-455b-934f-1e016d956a87",
+        "title": "Fileoperations",
+        "description": "Gör klart alla fileoperations så att det går att använda json filen som databas",
+        "category": "dev-backend",
+        "status": "doing",
+        "timestamp": "2026-02-27T13:23:37.412Z",
+        "assignedTo": "b9110df1-1382-4499-a114-88f4513c3df6"
+      },
+      {
+        "id": "d946da50-7575-4860-810f-11883a4d1c90",
+        "title": "Flöde",
+        "description": "Gör en tydlig plan på användarflödet samt developer flödet",
+        "category": "dev-frontend",
+        "status": "new",
+        "timestamp": "2026-02-27T13:28:43.955Z"
+      },
+      {
+        "id": "73e96be6-9403-4291-ac1d-7f80e9d04d94",
+        "title": "Back-front",
+        "description": "Börja planera och strukturera hur backend och frontend ska kommunicera med varandra",
+        "category": "dev-backend",
+        "status": "new",
+        "timestamp": "2026-02-27T13:29:31.882Z"
+      },
+      {
+        "id": "14f84397-3e47-4d87-8491-6e6c5f1541df",
+        "title": "Styling",
+        "description": "Börja planera stylingen på sidan",
+        "category": "ux",
+        "status": "new",
+        "timestamp": "2026-02-27T13:33:35.324Z"
+      }
+    ],
+    "Members": [
+      {
+        "id": "2864da2a-6b49-476d-93fd-ee5578db8c86",
+        "name": "Clara",
+        "category": "dev-frontend"
+      },
+      {
+        "id": "426d7359-bcb0-484d-bc6e-cf3a7c1d4cf0",
+        "name": "Alucard",
+        "category": "ux"
+      },
+      {
+        "id": "b9110df1-1382-4499-a114-88f4513c3df6",
+        "name": "David",
+        "category": "dev-backend"
+      }
+    ]
+  }
+]
