@@ -4,40 +4,44 @@ import {addAssignment, addMember, getData, deleteAssignment, updateAssignment} f
 import { isNewAssignment, isNewMember } from "./types";
 import type { Assignment } from "./types";
 
+const VALID_STATUSES = new Set<Assignment['status']>(['new', 'doing', 'done']);
+
+function getErrorMessage(error: unknown, fallback: string): string {
+    return error instanceof Error && error.message ? error.message : fallback;
+}
+
 export const app = express();
 app.use(express.json())
 app.use(cors());
 
 
 app.get('/data', async (req, res) => {
-    try{
-            const data = await getData();
-            console.log('Get all Data')
-            res.json(data);
-        }
+    try {
+        const data = await getData();
+        console.log('Get all Data')
+        res.json(data);
+    }
     catch (error) {
-        console.log(error)
-        res.status(500).json({ message: 'failed to get movie or movies' });
+        console.error('Failed to get data:', error);
+        res.status(500).json({ message: getErrorMessage(error, 'Failed to get data') });
     }
 })
 
 //          ASSIGNMENTS
 
 app.post('/assignments', async (req, res) => {
-
-    console.log(req.body);
-
     try {
         if(isNewAssignment(req.body)){
             const newAssignment = await addAssignment(req.body);
-            res.json({ message: 'success', newAssignment });
+            res.status(201).json({ message: 'success', newAssignment });
         }
         else{
             res.status(400).json({ message: 'Wrong format' });
         }
     }
     catch (error) {
-        res.status(500).json({ message: 'failed to add assignment' });
+        console.error('Failed to add assignment:', error);
+        res.status(500).json({ message: getErrorMessage(error, 'Failed to add assignment') });
     }
 })
 
@@ -51,17 +55,16 @@ app.delete('/assignments/:id', async (req, res) => {
         res.json({ message: 'Assignment deleted successfully' });
     }
     catch (error) {
-        // Om den kastar "Can only delete assignments with status done"
+        console.error('Failed to delete assignment:', error);
+
         if (error instanceof Error && error.message.includes('status')) {
             res.status(400).json({ message: error.message });
         }
-        // Om assignment inte finns
         else if (error instanceof Error && error.message.includes('not found')) {
             res.status(404).json({ message: 'Assignment not found' });
         }
-        // Annat fel
         else {
-            res.status(500).json({ message: 'Failed to delete assignment' });
+            res.status(500).json({ message: getErrorMessage(error, 'Failed to delete assignment') });
         }
     }
 })
@@ -69,16 +72,21 @@ app.delete('/assignments/:id', async (req, res) => {
 app.patch('/assignments/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        const updates = req.body; 
+        const updates = req.body as Partial<Assignment>;
+
+        if (updates.status && !VALID_STATUSES.has(updates.status)) {
+            return res.status(400).json({ message: 'Invalid status value' });
+        }
         
         const updatedAssignment = await updateAssignment(id, updates);
         res.json({ message: 'Assignment updated', updatedAssignment });
     }
     catch (error) {
+        console.error('Failed to update assignment:', error);
         if (error instanceof Error && error.message.includes('not found')) {
             res.status(404).json({ message: error.message });
         } else {
-            res.status(500).json({ message: 'Failed to update assignment' });
+            res.status(500).json({ message: getErrorMessage(error, 'Failed to update assignment') });
         }
     }
 })
@@ -86,10 +94,13 @@ app.patch('/assignments/:id', async (req, res) => {
 //          ASSIGN/UNASSIGN MEMBERS
 
 app.patch('/assignments/:id/assign', async (req, res) => {
-    //assignment id i endpointen - member id i req.body (det du skriver i postman body)
     try {
         const { id } = req.params;
         const { memberId } = req.body;
+
+        if (typeof memberId !== 'string' || memberId.trim().length === 0) {
+            return res.status(400).json({ message: 'memberId is required' });
+        }
         
         const data = await getData();
         
@@ -120,7 +131,8 @@ app.patch('/assignments/:id/assign', async (req, res) => {
         res.json({ message: 'Assignment assigned', updatedAssignment });
         
     } catch (error) {
-        res.status(500).json({ message: 'Failed to assign assignment' });
+        console.error('Failed to assign assignment:', error);
+        res.status(500).json({ message: getErrorMessage(error, 'Failed to assign assignment') });
     }
 })
 
@@ -136,25 +148,24 @@ app.patch('/assignments/:id/unassign', async (req, res) => {
         res.json({ message: 'Assignment unassigned', updatedAssignment });
         
     } catch (error) {
-        res.status(500).json({ message: 'Failed to unassign' });
+        console.error('Failed to unassign assignment:', error);
+        res.status(500).json({ message: getErrorMessage(error, 'Failed to unassign assignment') });
     }
 })
 
 //          MEMBERS
 
 app.post('/members', async (req, res) => {
-
-    console.log(req.body);
-
     try {
         if(isNewMember(req.body)){
             const newMember = await addMember(req.body);
-            res.json({message: 'success', newMember});
+            res.status(201).json({message: 'success', newMember});
         }
         else{
             res.status(400).json({ message: 'Wrong format' });
         }
     } catch (error) {
-        res.status(500).json({ message: 'failed to add member' });
+        console.error('Failed to add member:', error);
+        res.status(500).json({ message: getErrorMessage(error, 'Failed to add member') });
     }
 })

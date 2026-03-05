@@ -4,28 +4,42 @@ import type { Member, Assignment, NewAssignment, NewMember, Data } from "./types
 
 const DATA_PATH = './public/data.json';
 
+type RawDataShape = Array<{
+    assignments?: Assignment[];
+    Members?: Member[];
+}>;
+
 export const getData = async (): Promise<Data> => {
     try {
         const jsonData = await fs.readFile(DATA_PATH, 'utf-8');
-        const [dataObject] = JSON.parse(jsonData); // Plockar första elementet från arrayen
-        
-        const { assignments, Members: members } = dataObject; // Destructure 
-        
-        return { assignments, members }; 
+        const parsedData = JSON.parse(jsonData) as RawDataShape;
+
+        if (!Array.isArray(parsedData) || parsedData.length === 0) {
+            throw new Error('Data file has invalid structure');
+        }
+
+        const dataObject = parsedData[0];
+        const assignments = dataObject.assignments;
+        const members = dataObject.Members;
+
+        if (!Array.isArray(assignments) || !Array.isArray(members)) {
+            throw new Error('Data file is missing assignments or Members arrays');
+        }
+
+        return { assignments, members };
     }
     catch(error) {
-        throw error;
+        throw new Error(error instanceof Error ? `Failed to read data: ${error.message}` : 'Failed to read data');
     }
 }
 
 const writeData = async (data: Data): Promise<void> => {
     try {
-        // Skriva tillbaka i samma format som JSON-filen förväntar
         const dataToWrite = [{ assignments: data.assignments, Members: data.members }];
         await fs.writeFile(DATA_PATH, JSON.stringify(dataToWrite, null, 2));
     }
     catch(error) {
-        throw error;
+        throw new Error(error instanceof Error ? `Failed to write data: ${error.message}` : 'Failed to write data');
     }
 }
 
@@ -34,7 +48,6 @@ const writeData = async (data: Data): Promise<void> => {
 export const addAssignment = async (assingment: NewAssignment): Promise<Assignment> => {
     const data = await getData();
 
-    // Lägg till ett ID & timestamp
     const newAssignment: Assignment = {
         id: crypto.randomUUID(), ...assingment,
         status: 'new',
@@ -43,12 +56,13 @@ export const addAssignment = async (assingment: NewAssignment): Promise<Assignme
     }
 
     data.assignments.push(newAssignment);
+
     try {
     await writeData(data);
     return newAssignment;
     }
     catch(error){
-        throw error;
+        throw new Error(error instanceof Error ? `Failed to add assignment: ${error.message}` : 'Failed to add assignment');
     }
 }
 
@@ -70,7 +84,7 @@ export const deleteAssignment = async (id: string): Promise<void> => {
 
 export const updateAssignment = async (
     id: string, 
-    updates: Partial<Assignment> // för att kunna uppdatera vad som helst i assignment utan att påverka de andra egenskaperna. 
+    updates: Partial<Assignment>
 ): Promise<Assignment> => {
     try {
         const data = await getData();
@@ -80,14 +94,13 @@ export const updateAssignment = async (
             throw new Error('Assignment not found');
         }
         
-        //Merge updates in i objektet
         Object.assign(assignment, updates);
         await writeData(data);
 
         return assignment;
         
     } catch (error) {
-        throw error;
+        throw new Error(error instanceof Error ? `Failed to update assignment: ${error.message}` : 'Failed to update assignment');
     }
 }
 
@@ -96,7 +109,6 @@ export const updateAssignment = async (
 export const addMember = async (member: NewMember): Promise<Member> => {
     const data = await getData();
 
-    // Lägg till ett ID 
     const newMember: Member = {
         id: crypto.randomUUID(), ...member,
     }
@@ -107,6 +119,6 @@ export const addMember = async (member: NewMember): Promise<Member> => {
         return newMember;
     }
     catch (error) {
-        throw error;
+        throw new Error(error instanceof Error ? `Failed to add member: ${error.message}` : 'Failed to add member');
     }
 }

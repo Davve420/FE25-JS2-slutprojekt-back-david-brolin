@@ -11,20 +11,11 @@
         "assignedTo": "2864da2a-6b49-476d-93fd-ee5578db8c86"
       },
       {
-        "id": "aabe515d-4444-4515-960b-5c5a17b282b2",
-        "title": "Wireframes",
-        "description": "Gör en wireframe för hur sidan ska se ut och flödet.",
-        "category": "ux",
-        "status": "doing",
-        "timestamp": "2026-02-27T13:23:05.562Z",
-        "assignedTo": "426d7359-bcb0-484d-bc6e-cf3a7c1d4cf0"
-      },
-      {
         "id": "3d1d0599-2118-455b-934f-1e016d956a87",
         "title": "Fileoperations",
         "description": "Gör klart alla fileoperations så att det går att använda json filen som databas",
         "category": "dev-backend",
-        "status": "doing",
+        "status": "done",
         "timestamp": "2026-02-27T13:23:37.412Z",
         "assignedTo": "b9110df1-1382-4499-a114-88f4513c3df6"
       },
@@ -33,41 +24,121 @@
         "title": "Flöde",
         "description": "Gör en tydlig plan på användarflödet samt developer flödet",
         "category": "dev-frontend",
-        "status": "new",
-        "timestamp": "2026-02-27T13:28:43.955Z"
+        "status": "doing",
+        "timestamp": "2026-02-27T13:28:43.955Z",
+        "assignedTo": "c65e99cf-4b37-4c40-8409-fbca2a7ce108"
       },
       {
         "id": "73e96be6-9403-4291-ac1d-7f80e9d04d94",
         "title": "Back-front",
         "description": "Börja planera och strukturera hur backend och frontend ska kommunicera med varandra",
         "category": "dev-backend",
-        "status": "new",
-        "timestamp": "2026-02-27T13:29:31.882Z"
+        "status": "done",
+        "timestamp": "2026-02-27T13:29:31.882Z",
+        "assignedTo": "b9110df1-1382-4499-a114-88f4513c3df6"
       },
       {
         "id": "14f84397-3e47-4d87-8491-6e6c5f1541df",
         "title": "Styling",
         "description": "Börja planera stylingen på sidan",
         "category": "ux",
+        "status": "done",
+        "timestamp": "2026-02-27T13:33:35.324Z",
+        "assignedTo": "426d7359-bcb0-484d-bc6e-cf3a7c1d4cf0"
+      },
+      {
+        "id": "f25023db-5c8f-4a7d-b1df-9c955b9bf607",
+        "title": "Assign and Mark",
+        "description": "Fixa knapparna assign member och mark as done. remove",
+        "category": "dev-frontend",
+        "status": "done",
+        "timestamp": "2026-03-05T12:12:00.466Z",
+        "assignedTo": "2864da2a-6b49-476d-93fd-ee5578db8c86"
+      },
+      {
+        "id": "0e57b76e-a146-4dda-a4c1-724611afd943",
+        "title": "Posta till github, deploy and document",
+        "description": "Post the files to github in two seperate reposetories, one for frontend and one for backend. Then deploy the page, handle the server. Document the production, development and use of product. ",
+        "category": "ux",
+        "status": "doing",
+        "timestamp": "2026-03-05T14:27:52.037Z",
+        "assignedTo": "90f96743-98cb-4205-ab97-941bd68ebaa9"
+      },
+      {
+        "id": "aec67188-cca4-4d40-a050-7b334071157a",
+        "title": "Clean code front",
+        "description": "Clean the code so it's readable and maintainable.",
+        "category": "dev-frontend",
         "status": "new",
-        "timestamp": "2026-02-27T13:33:35.324Z"
+        "timestamp": "2026-03-05T14:37:47.673Z"
+      },
+      {
+        "id": "bfa01eb0-ac69-4917-97af-6514859946e6",
+        "title": "Clean code back",
+        "description": "Clean the code so it's readable and maintainable.",
+        "category": "dev-backend",
+        "status": "new",
+        "timestamp": "2026-03-05T14:38:00.822Z"
+      },
+      {
+        "id": "f43a138b-93dc-42f1-aec6-28ba617ff74e",
+        "title": "Error handling",
+        "description": "Gör tydligare errors",
+        "category": "dev-frontend",
+        "status": "new",
+        "timestamp": "2026-03-05T14:38:44.563Z"
+      },
+      {
+        "id": "ec613c14-a32e-412e-992b-41d70f6919ed",
+        "title": "Error handling",
+        "description": "gör tydligare errors",
+        "category": "dev-backend",
+        "status": "new",
+        "timestamp": "2026-03-05T14:39:04.736Z"
       }
     ],
     "Members": [
       {
         "id": "2864da2a-6b49-476d-93fd-ee5578db8c86",
         "name": "Clara",
-        "category": "dev-frontend"
+        "category": "dev-frontend",
+        "role": "member"
       },
       {
         "id": "426d7359-bcb0-484d-bc6e-cf3a7c1d4cf0",
         "name": "Alucard",
-        "category": "ux"
+        "category": "ux",
+        "role": "member"
       },
       {
         "id": "b9110df1-1382-4499-a114-88f4513c3df6",
         "name": "David",
-        "category": "dev-backend"
+        "category": "dev-backend",
+        "role": "admin"
+      },
+      {
+        "id": "c65e99cf-4b37-4c40-8409-fbca2a7ce108",
+        "name": "Mrs.Peregrine",
+        "category": "dev-frontend",
+        "role": "member"
+      },
+      {
+        "id": "372a6a08-bd60-4f5f-be94-a0a8edca7b28",
+        "name": "Bean",
+        "category": "ux",
+        "role": "member"
+      },
+      {
+        "id": "ea2fde65-717f-4d2b-921d-6cc748aa63e8",
+        "name": "Mr.Backend",
+        "category": "dev-backend",
+        "role": "member"
+      },
+      {
+        "id": "90f96743-98cb-4205-ab97-941bd68ebaa9",
+        "name": "Nimda",
+        "category": "ux",
+        "role": "admin"
       }
     ]
   }
