@@ -8,9 +8,11 @@ Open the terminal, navigate to the root folder for the project and enter the com
 
 Enter the command "npm install" this will download the folder "node_modules" and all the dependencies that the project needs.
 *If you still get errors, there might be something that didn't download correctly (ex. types), please check both the package.json and package-lock.json, in dependencies and devdependencies. Make sure all of them are installed correctly*
+
 Now your project is ready. All you need to do is to run the dev command. "npm run dev". you can change the name of this command to whatever you want, notice that you shouldn't change the contents. 
 Now the server is started and you can begin to host the frontend part: https://github.com/Davve420/FE25-JS2-slutprojekt-front-david-brolin
 *Tip:* Check the "package.json" file, the command will be located in scripts, look for "dev".
+
 
 
 
