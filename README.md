@@ -20,12 +20,12 @@ Now the server is started and you can begin to host the frontend part: https://g
 
 *Check that the server is running on http://localhost:3000*
 
-# After Development:
-To make the project deployable.
+# To make the project deployable.
 
 Now you should run "npm run build" this will check all typescript errors and create the dist folder.
 
 You can now run "npm run start" this will start the project from the dist folder.
+
 
 
 
