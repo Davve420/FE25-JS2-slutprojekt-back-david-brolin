@@ -1,4 +1,4 @@
-#To Start and get going with the backend part of the Scrumboard project
+# To Start and get going with the backend part of the Scrumboard project
 
 First you will need to clone the repository... I will assume you already know how to do that otherwise visit: https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository 
 
@@ -20,12 +20,13 @@ Now the server is started and you can begin to host the frontend part: https://g
 
 *Check that the server is running on http://localhost:3000*
 
-#After Development:
+# After Development:
 To make the project deployable.
 
 Now you should run "npm run build" this will check all typescript errors and create the dist folder.
 
 You can now run npm run start "this will start the project from the dist folder"
+
 
 
 
