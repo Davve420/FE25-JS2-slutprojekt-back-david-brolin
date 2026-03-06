@@ -25,8 +25,7 @@ To make the project deployable.
 
 Now you should run "npm run build" this will check all typescript errors and create the dist folder.
 
-You can now run npm run start "this will start the project from the dist folder"
-
+You can now run "npm run start" this will start the project from the dist folder.
 
 
 
